@@ -1,10 +1,15 @@
-import { View } from 'react-native';
+
 import './App.css';
+import Home from './components/Home';
+import Scan from './components/Scan';
 
 function App() {
   return (
-    <View>
-    </View>
+    <div>
+    <Home/>
+
+      {/* <Scan/> */}
+    </div>
   );
 }
 
