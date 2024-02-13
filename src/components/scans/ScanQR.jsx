@@ -1,13 +1,10 @@
 import { Html5QrcodeScanner, Html5QrcodeSupportedFormats } from "html5-qrcode";
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import ScanResults from "./ScanResults";
-
 const ScanQR = () => {
-	const navigate = useNavigate();
 	const [scanResult, setScanResults] = useState(null);
 	useEffect(() => {
-		//QR
 		const html5QrCode = new Html5QrcodeScanner(
 			"reader",
 			{
@@ -21,17 +18,16 @@ const ScanQR = () => {
 			false
 		);
 		const qrCodeSuccessCallback = (decodedText, decodedResult) => {
+			html5QrCode.clear();
 			setScanResults(decodedText);
 		};
 		html5QrCode.render(qrCodeSuccessCallback);
-		// const config = { fps: 10, qrbox: { width: 250, height: 250 } };
-		// html5QrCode.start({ facingMode: "user" }, config, qrCodeSuccessCallback);
 	}, []);
 
 	return (
 		<div>
 			{scanResult ? (
-				<ScanResults item={scanResult} />
+				<ScanResults itemQR={scanResult} />
 			) : (
 				<>
 					<p>Escaneando...</p>
@@ -40,12 +36,12 @@ const ScanQR = () => {
 						producto en el recuadro
 					</p>
 					<div id="reader"></div>
+					<nav>
+						<Link to="/scanBar">BAR CODE</Link>
+						<Link to="/scanQR">QR CODE</Link>
+					</nav>
 				</>
 			)}
-			<nav>
-				<Link to="/scanBar">BAR CODE</Link>
-				<Link to="/scanQR">QR CODE</Link>
-			</nav>
 		</div>
 	);
 };

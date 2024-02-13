@@ -8,8 +8,8 @@ const ScanBarCode = () => {
 
 	useEffect(() => {
 		function onScanSuccess(decodedText, decodedResult) {
+			html5QrcodeScanner.clear()
 			setScanResults(decodedText);
-			console.log(`Code matched = ${decodedText}`, decodedResult);
 		}
 
 		const formatsToSupport = [
@@ -39,7 +39,7 @@ const ScanBarCode = () => {
 	return (
 		<div>
 			{scanResult ? (
-				<ScanResults item={scanResult} />
+				<ScanResults itemBAR={scanResult} />
 			) : (
 				<>
 					<p>Escaneando...</p>
