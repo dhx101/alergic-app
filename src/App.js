@@ -2,9 +2,9 @@
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from "./components/Home";
-// import Scan from "./components/scans/Scan";
-// import ScanQR from "./components/scans/ScanQR";
-// import ScanBarCode from "./components/scans/ScanBarCode";
+import Scan from "./components/scans/Scan";
+import ScanQR from "./components/scans/ScanQR";
+import ScanBarCode from "./components/scans/ScanBarCode";
 import SeleccionAlergias from './components/alergias/SeleccionAlergias';
 import SeleccionAlergias2 from './components/alergias/SeleccionAlergias2';
 import SeleccionAlergias3 from './components/alergias/SeleccionAlergias3';
@@ -30,5 +30,5 @@ function App() {
       
 		</div>
   );
-
+}
 export default App;
