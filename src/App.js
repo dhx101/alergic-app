@@ -1,3 +1,4 @@
+
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from "./components/Home";
@@ -20,15 +21,14 @@ function App() {
           <Route path="/allergy2" element={<SeleccionAlergias2/>}/>
           <Route path="/allergy3" element={<SeleccionAlergias3/>}/>
           <Route path="/allergy4" element={<SeleccionAlergias4/>}/>
-          {/* <Route path="/scan" element={<Scan/>}/>
+          <Route path="/scan" element={<Scan/>}/>
           <Route path="/scanQR" element={<ScanQR/>}/>
-				<Route path="/scanBar" element={<ScanBarCode/>}/> */}
+				<Route path="/scanBar" element={<ScanBarCode/>}/>
         </Routes>
 			</BrowserRouter>
 
       
 		</div>
   );
-}
 
 export default App;

@@ -1,0 +1,25 @@
+{
+	"users": [
+		{
+			"email": "prueba@gmail.com",
+			"password": "1234",
+			"name": "David Apellido Apellido",
+			"alergies": ["A", "B", "C"]
+		}
+	],
+	"alergies": [{ "A": [], "B": [], "C": [] }],
+	"food": [
+		{
+			"name": "Algo",
+			"barcode": "AAAAAAAA",
+			"QR": "AAAAAA",
+			"ingredientes": []
+		},
+		{
+			"name": "Algo2",
+			"barcode": "AAAAAAAA2",
+			"QR": "BBBBBB",
+			"ingredientes": []
+		}
+	]
+}
