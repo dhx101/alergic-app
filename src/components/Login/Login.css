@@ -1,0 +1,52 @@
+@font-face {
+    font-family: Montserrat-Regular;
+    src: url(../../../public/Fonts/Montserrat-Regular.ttf);
+}
+
+@font-face {
+    font-family: Montserrat-Bold;
+    src: url(../../../public/Fonts/Montserrat-Bold.ttf);
+}
+
+
+* {
+    font-family: Montserrat-Regular;
+}
+
+.text {
+    font-family: Montserrat-Bold;
+    font-size: 20pt;
+}
+
+.Forgot-password {
+    font-family: Montserrat-Bold;
+}
+
+.Login {
+    font-family: Montserrat-Bold;
+}
+
+.p {
+    font-size: 16pt;
+    margin-right: 20px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    margin-top: 200px;
+    background: white;
+    padding-bottom: 30px;
+}
+
+.submit-container {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    align-items: center;
+}
+
+.submit {
+
+}
