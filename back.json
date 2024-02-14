@@ -1,0 +1,73 @@
+{
+	"users": [
+		{
+			"id": "1",
+			"email": "prueba@gmail.com",
+			"password": "1234",
+			"name": "David Apellido Apellido",
+			"alergies": ["Aguacate", "Cacahuete"],
+			"emergency_contact": [
+				{
+					"fullname": "Algo Martinez",
+					"email": "algo@gmail.com",
+					"mobile": "654321987",
+					"company": "Servicios Muy Algo S.L"
+				}
+			]
+		}
+	],
+	"alergies": [
+		{
+			"A": [
+				"Acido benzoico",
+				"Aguacate",
+				"Ajo",
+				"Albaricoque",
+				"Alforfón",
+				"Almendras",
+				"Altramuces",
+				"Anacardo",
+				"Apio",
+				"Arroz",
+				"Avellana",
+				"Avena"
+			],
+			"B": ["Bálsamo del Perú"],
+			"C": [
+				"Cacahuete",
+				"Carne de ave de corral",
+				"Carne roja",
+				"Cebada",
+				"Centeno"
+			],
+			"E": ["Espelta"],
+			"F": ["Fresa"],
+			"G": ["Garbanzos", "Guisantes"],
+			"H": ["Huevo"],
+			"K": ["Kamut", "Kiwi"],
+			"L": ["Leche", "Lentejas"],
+			"M": ["Mango", "Maiz", "Marisco", "Melocoton", "Melon", "Mostaza"],
+			"N": ["Nectarina", "Nuez"],
+			"P": ["Pescado", "Platano", "Polen"],
+			"S": ["Sandia", "Sesamo", "Soja", "Sulfitos"],
+			"T": ["Tartrazina", "Tomate", "Trigo"]
+		}
+	],
+	"food": [
+		{
+			"name": "Leche entera",
+			"barcode": "123456789",
+			"qr": "AAAAAA",
+			"ingredientes": ["Leche", "Cacahuete"],
+			"descripcion": "Leche entera pasteurizada.",
+			"img": "https://www.supermercadoseljamon.com/documents/10180/892067/17004100_G.jpg"
+		},
+		{
+			"name": "Arroz blanco",
+			"barcode": "987654321",
+			"qr": "BBBBBB",
+			"ingredientes": ["Arroz"],
+			"descripcion": "Arroz blanco de grano largo."
+		}
+	]
+}
