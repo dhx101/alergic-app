@@ -1,5 +1,14 @@
 
 import './App.css';
+import Login from './components/Login/Login';
+
+
+function App() {
+  return (
+    <View>
+      <Login></Login>
+    </View>
+
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from "./home/Home";
 import ScanQR from "./components/scans/ScanQR";
