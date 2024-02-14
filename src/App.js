@@ -1,8 +1,7 @@
 
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Home from "./components/Home";
-import Scan from "./components/scans/Scan";
+import Home from "./home/Home";
 import ScanQR from "./components/scans/ScanQR";
 import ScanBarCode from "./components/scans/ScanBarCode";
 import SeleccionAlergias from './components/alergias/SeleccionAlergias';
@@ -17,7 +16,7 @@ import Welocome4 from "./welcome_page_4/Welcome4";
 
 function App() {
   return (
-    <div>
+    <>
       <BrowserRouter>
         <Routes>
           <Route path="/homeLog" element={<Homepage />} />
@@ -30,12 +29,11 @@ function App() {
           <Route path="/allergy3" element={<SeleccionAlergias3/>}/>
           <Route path="/allergy4" element={<SeleccionAlergias4/>}/>
           <Route path="/" element={<Home />} />
-          <Route path="/scan" element={<Scan />} />
           <Route path="/scanQR" element={<ScanQR />} />
           <Route path="/scanBar" element={<ScanBarCode />} />
         </Routes>
       </BrowserRouter>
-    </div>
+    </>
   );
 }
 

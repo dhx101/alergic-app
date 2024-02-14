@@ -47,7 +47,7 @@ const Home = () => {
 				</li>
 				<li>
 					<a href="tel:">SOS </a>
-					<p>¿Necesitas ayuda urgente? contactamo con emergencias</p>
+					<p>¿Necesitas ayuda urgente? contactamos con emergencias</p>
 				</li>
 			</ul>
 			<nav>
