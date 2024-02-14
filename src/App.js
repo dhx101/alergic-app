@@ -1,12 +1,12 @@
 import { Text, View } from 'react-native';
 import './App.css';
-import Register from './components/Register/Register';
+import Login from './components/Login/Login';
 
 
 function App() {
   return (
     <View>
-      <Register></Register>
+      <Login></Login>
     </View>
   );
 }
