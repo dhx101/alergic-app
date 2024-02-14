@@ -1,10 +1,12 @@
 import { Text, View } from 'react-native';
 import './App.css';
+import Register from './components/Register/Register';
+
 
 function App() {
   return (
     <View>
-      <Text>Hola</Text>
+      <Register></Register>
     </View>
   );
 }

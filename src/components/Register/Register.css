@@ -1,0 +1,13 @@
+* {
+    font-family: ;
+}
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    margin-top: 200px;
+    background: white;
+    padding-bottom: 30px;
+}
