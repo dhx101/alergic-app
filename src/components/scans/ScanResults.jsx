@@ -7,25 +7,19 @@ const ScanResults = ({ itemQR, itemBAR }) => {
 	const baseURL = "http://localhost:5000";
 	const [food, setFood] = useState(null);
 	const [user, setUser] = useState(null);
+
 	const lowerCaseAlergias = user?.allergies.map((item) => item.toLowerCase());
 	const lowerCaseIngredientes = food?.ingredientes.map((item) =>
 		item.toLowerCase()
 	);
+
+	console.log(lowerCaseAlergias, lowerCaseIngredientes);
 
 	lowerCaseAlergias?.map(
 		(item) =>
 			lowerCaseIngredientes?.includes(item.toLowerCase()) &&
 			ingredientesAlergias.push(item.toLowerCase())
 	);
-
-	const getUser = async (userID = 1) => {
-		try {
-			const myUser = await axios.get(`${baseURL}/users/${userID}`);
-			setUser(myUser.data);
-		} catch (error) {
-			console.error(error);
-		}
-	};
 	const getFoods = async (itemQR) => {
 		try {
 			if (itemBAR) {
@@ -42,7 +36,6 @@ const ScanResults = ({ itemQR, itemBAR }) => {
 				setFood(database.data);
 			}
 		} catch (error) {
-			console.error(error);
 		}
 	};
 
@@ -56,7 +49,9 @@ const ScanResults = ({ itemQR, itemBAR }) => {
 	}, [itemQR, itemBAR]);
 
 	useEffect(() => {
-		getUser("65ce1d5f5a7ab82f5704a5ce");
+		const userDatabase = JSON.parse(localStorage.getItem('user'))
+		// console.log(userDatabase);
+		setUser(userDatabase);
 	}, []);
 	return (
 		<div className="scan-results">

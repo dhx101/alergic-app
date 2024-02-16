@@ -1,10 +1,10 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
+import React from "react";
+import { NavLink } from "react-router-dom";
 
 const MenuFooter = () => {
-  return (
-    <footer className="footer">
-			<nav >
+	return (
+		<footer className="footer">
+			<nav>
 				<ul className="footer-nav">
 					<li>
 						<NavLink to="/">Home</NavLink>
@@ -20,8 +20,8 @@ const MenuFooter = () => {
 					</li>
 				</ul>
 			</nav>
-			</footer>
-  )
-}
+		</footer>
+	);
+};
 
-export default MenuFooter
+export default MenuFooter;
