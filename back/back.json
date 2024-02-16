@@ -4,7 +4,15 @@
 			"email": "prueba@gmail.com",
 			"password": "1234",
 			"name": "David Apellido Apellido",
-			"alergies": ["A", "B", "C"]
+			"alergies": ["A", "B", "C"],
+			"emergency_contact":[
+				{
+					"fullname":"Algo Martinez",
+					"email":"algo@gmail.com",
+					"mobile":"654321987",
+					"company":"Servicios Muy Algo S.L"
+				}
+			]
 		}
 	],
 	"alergies": [{ "A": [], "B": [], "C": [] }],

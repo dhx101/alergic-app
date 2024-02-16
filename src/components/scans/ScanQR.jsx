@@ -2,6 +2,7 @@ import { Html5QrcodeScanner, Html5QrcodeSupportedFormats } from "html5-qrcode";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ScanResults from "./ScanResults";
+import GoMainMenu from "../GoMainMenu/GoMainMenu";
 const ScanQR = () => {
 	const [scanResult, setScanResults] = useState(null);
 	useEffect(() => {
@@ -9,7 +10,7 @@ const ScanQR = () => {
 			"reader",
 			{
 				fps: 10,
-				qrbox: { width: 250, height: 250 },
+				qrbox: 250,
 				formatsToSupport: [
 					Html5QrcodeSupportedFormats.QR_CODE,
 					Html5QrcodeSupportedFormats.AZTEC,
@@ -26,22 +27,30 @@ const ScanQR = () => {
 
 	return (
 		<div>
+			<GoMainMenu/>
+			<main>
 			{scanResult ? (
 				<ScanResults itemQR={scanResult} />
 			) : (
-				<>
-					<p>Escaneando...</p>
-					<p>
-						Tan solo tienes que centrar el <span>código QR</span> del
+				<div className="scan">
+					<p className="scanning-text">Escaneando...</p>
+					<p className="scan-text">
+						Tan solo tienes que centrar el{" "}
+						<span className="scan-text__code">código QR</span> del
 						producto en el recuadro
 					</p>
-					<div id="reader"></div>
-					<nav>
-						<Link to="/scanBar">BAR CODE</Link>
-						<Link to="/scanQR">QR CODE</Link>
+					<div id="reader" className="reader-qr"></div>
+					<nav className="scan-nav">
+						<Link className="scan-nav__link" to="/scanBar">
+							<img src="./assets/svg/barcode.svg" alt="BARCODE" />
+						</Link>
+						<Link className="scan-nav__link" to="/scanQR">
+							<img src="./assets/svg/qrcode.svg" alt="QR CODE" />
+						</Link>
 					</nav>
-				</>
+				</div>
 			)}
+			</main>
 		</div>
 	);
 };

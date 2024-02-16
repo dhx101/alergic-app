@@ -1,4 +1,5 @@
 body {
+
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -8,9 +9,236 @@ body {
   display: flex;
   justify-content: center;
   text-align: center;
+
+	
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+		monospace;
+}
+/* Scans */
+.scan {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 25px;
+}
+.scanning-text {
+	text-align: center;
+	font-weight: 700;
+}
+
+.scan-text {
+	text-align: center;
+}
+
+.scan-text__code {
+	font-weight: 700;
+}
+
+.scan-nav {
+	display: flex;
+	gap: 25px;
+}
+
+.scan-nav img {
+	width: 25px;
+	padding: 5px;
+	border-radius: 5px;
+}
+
+.scan-nav img:hover {
+	background-color: aquamarine;
+}
+
+.reader-bar {
+	width: 500px;
+	height: 250px;
+	border-radius: 5px;
+	border: 5px solid grey;
+}
+
+.reader-qr {
+	width: 250px;
+	height: 250px;
+	border-radius: 5px;
+	border: 5px solid grey;
+}
+
+.scan-results {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+}
+
+.scan-results-info {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+/* Home */
+.header {
+	display: flex;
+	height: 75px;
+	position: relative;
+	align-items: center;
+	padding: 0 50px;
+	justify-content: space-between;
+}
+.menu-burguer {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+}
+.menu-bar {
+	width: 20px;
+	height: 3px;
+	background-color: rgb(0, 0, 0);
+}
+.nav__btn {
+	display: none;
+}
+
+.header-nav-list {
+	position: absolute;
+	display: none;
+	flex-direction: column;
+	background-color: white;
+	gap: 10px;
+	top: 0px;
+	left: 0px;
+	padding: 25px;
+	border-right: 1px solid black;
+	border-bottom: 1px solid black;
+}
+
+.header-nav-list a {
+	color: black;
+	text-decoration: none;
+	font-size: 1.5rem;
+}
+
+@media screen and (max-width: 992px) {
+	.header-nav-list a {
+		color: black;
+		text-decoration: none;
+		font-size: 2rem;
+	}
+}
+.show-list {
+	display: flex;
+}
+.modal-info {
+	position: relative;
+}
+.modal {
+	display: none;
+}
+
+.modal-show {
+	background-color: grey;
+	padding: 10px;
+	border-radius: 5px;
+	display: block;
+	position: absolute;
+	right: 0;
+}
+
+.information-box {
+	background-color: grey;
+	padding: 5px;
+	border-radius: 5px;
+}
+
+.main {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	gap: 25px;
+	padding: 25px 0;
+}
+.main-logo {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.main-logo img {
+	width: 150px;
+}
+.main-nav {
+	display: flex;
+	flex-direction: column;
+	gap: 25px;
+	justify-content: center;
+	align-items: center;
+}
+
+.title {
+	font-weight: 900;
+	font-size: 1.5rem;
+}
+.main-nav-item {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+}
+
+.main-nav-item p {
+	text-align: center;
+	font-size: 0.7rem;
+}
+.main-nav__btn {
+	height: 25px;
+	width: 125px;
+	border-radius: 5px;
+	text-decoration: none;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: white;
+}
+
+.btn-scan {
+	background-color: aqua;
+}
+
+.btn-search {
+	background-color: beige;
+}
+
+.btn-sos {
+	background-color: salmon;
+}
+
+.footer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100vw;
+	height: 50px;
+	border-top: 1px solid black;
+}
+
+.footer-nav {
+	width: 100vw;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+}
+
+.footer-nav a {
+	text-decoration: none;
+	color: black;
+}
+
+.footer-nav a.active {
+	color: aqua;
 }
