@@ -13,6 +13,8 @@ import Welocome1 from "./welcome_page_1/Welocome1";
 import Welocome2 from "./welcome_page_2/Welcome2";
 import Welocome3 from "./welcome_page_3/Welcome3";
 import Welocome4 from "./welcome_page_4/Welcome4";
+import Perfil from "./components/Perfil/Perfil";
+import Favoritos from "./components/Favoritos/Favoritos";
 
 function App() {
 	return (
@@ -32,6 +34,9 @@ function App() {
 					<Route path="/" element={<Home />} />
 					<Route path="/scanQR" element={<ScanQR />} />
 					<Route path="/scanBar" element={<ScanBarCode />} />
+					<Route path="/profile" element={<Perfil/>}/>
+					<Route path="/favorites" element={<Favoritos/>}/>
+
 				</Routes>
 			</BrowserRouter>
 		</>
