@@ -10,7 +10,7 @@ const ReportPage = () => {
   return (
     <div>
       <button>
-        <a href="">volver</a>
+        <a href="">volver.</a>
       </button>
       <button>
         <a href="">x</a>
