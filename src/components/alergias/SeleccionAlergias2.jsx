@@ -1,257 +1,139 @@
-import React, { useState } from 'react'
-import { useForm } from 'react-hook-form'
-import { Link } from 'react-router-dom'
-import './SeleccionAlergias2.css';
+import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { Link, useNavigate } from "react-router-dom";
+import "./SeleccionAlergias2.css";
+import axios from "axios";
 
 const SeleccionAlergias2 = () => {
+    const letras = [];
 
-    const letras = ["A", "B", "C", "E", "F", "G", "H", "K", "L", "M", "N", "P", "S", "T"]
+    const [alergiasUsuario, setAlergiasUsuario] = useState();
+    const getUser = async (idUser = "65ccefa12343b9a461d701af") => {
+        const res = await axios.get(`http://localhost:5000/users/${idUser}`);
 
-    const alergenos = ["Acido benzoico", "Aguacate", "Ajo", "Albaricoque", "Alforfón", "Almendras", "Altramuces", "Anacardo", "Apio", "Arroz", "Avellana", "Avena", "Bálsamo del Perú", "Cacahuete", "Carne de ave de corral", "Carne roja", "Cebada", "Centeno", "Espelta", "Fresa", "Garbanzos", "Guisantes", "Huevo", "Kamut", "Kiwi", "Leche", "Lentejas", "Mango", "Maiz", "Marisco", "Melocoton", "Melon", "Mostaza", "Nectarina", "Nuez", "Pescado", "Platano", "Polen", "Sandia", "Sesamo", "Soja", "Sulfitos", "Tartrazina", "Tomate", "Trigo"]
+        setAlergiasUsuario(res.data.allergies);
+        return res.data.allergies;
+    };
 
-    const {register, handleSubmit} = useForm()
+    const [alergenosDB, setAlergenos] = useState();
+    const getAlergias = async () => {
+        const res = await axios.get(`http://localhost:5000/allergies`);
+        setAlergenos(res.data[0]);
+    };
+    for (const key in alergenosDB) {
+        if (!(key.length > 1)) {
+            letras.push(key);
+        }
+    }
+
+    // let alergenos2= []
+
+    // letras.map((item) => {
+    //     alergenos2 = [...alergenos2, ...alergenosDB[item]]
+    // })
+
+    // console.log(alergenos2.includes("Ajo"));
+    useEffect(() => {
+        getUser();
+        getAlergias();
+    }, []);
+
+    const { register, handleSubmit } = useForm();
+
+    const patch = async (datos, idUser = "65ccefa12343b9a461d701af") => {
+        console.log(`http://localhost:5000/users/${idUser}`, datos);
+        await axios.patch(`http://localhost:5000/users/${idUser}`, datos);
+    };
+
+    const [alergenosSeleccionados, setAlergenosSeleccionados] = useState({});
+
+    const handleCheckboxChange = (alergeno) => {
+        setAlergenosSeleccionados((prevSeleccionados) => ({
+            ...prevSeleccionados,
+            [alergeno]: !prevSeleccionados[alergeno],
+        }));
+    };
+
+    const navigate = useNavigate()
 
     const onSubmit = (data) => {
-      const dataSelect = Object.fromEntries(
-        Object.entries(data).filter(([key, value]) => value === true)
-      )
+        console.log("Que me devuelve esto", data);
+        const alergenos2 = Object.entries(alergenosSeleccionados)
+            .filter(([_, seleccionado]) => seleccionado)
+            .map(([alergeno]) => alergeno);
 
-      
-      console.log('Datos del formulario:', dataSelect);
-      console.log('Datos del formulario:', data);
+        console.log("Alergenos seleccionados:", alergenos2);
+
+        const datos = {
+            // ...data,
+            allergies: alergenosSeleccionados,
+        };
+
+        patch(datos);
+        navigate('/allergy3')
     };
 
-    const [isChecked, setIsChecked] = useState(false);
+    return (
+        <>
+            <div className="header">
+                <Link to="/allergy1">
+                    <button>Volver</button>
+                </Link>
+                <h4>3 de 4</h4>
+            </div>
 
-    const handleClick = (alergeno) => {
-      setIsChecked({...isChecked, [alergeno]: !isChecked[alergeno]});
-    };
+            <div className="titulo">
+                <h2>Ahora selecciona tus alergias e intolerancias.</h2>
+                <p>
+                    Los elementos marcados serán identificados en tus busquedas
+                    como peligrosos para ti.
+                </p>
+            </div>
+            <div className="letras">
+                {letras?.map((letra, id) => (
+                    <button key={id}>{letra}</button>
+                ))}
+            </div>
 
+            <div className="alergenos">
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    {letras?.map((letra, id) => (
+                        <div key={id}>
+                            <p>{letra}</p>
 
-    // const handleLetraClick = (letra) => {
-    //   // Si la letra ya está seleccionada, la eliminamos del array
-    //   if (letrasSeleccionadas.includes(letra)) {
-    //     setLetrasSeleccionadas(letrasSeleccionadas.filter(item => item !== letra));
-    //   } else {
-    //     // Si la letra no está seleccionada, la agregamos al array
-    //     setLetrasSeleccionadas([...letrasSeleccionadas, letra]);
-    //   }
-    // };
+                            {alergenosDB[letra].map((alergeno, id) => (
+                                <div key={id}>
+                                    <input
+                                        type="checkbox"
+                                        className="check"
+                                        id={alergeno}
+                                        {...register(alergeno)}
+                                        checked={
+                                            alergenosSeleccionados[alergeno] ||
+                                            false
+                                        }
+                                        onChange={() =>
+                                            handleCheckboxChange(alergeno)
+                                        }
+                                    />
+                                    <label
+                                        htmlFor={alergeno}
+                                        className="noboton"
+                                    >
+                                        {alergeno}
+                                    </label>
+                                </div>
+                            ))}
+                        </div>
+                    ))}
+                    {/* <Link to="/allergy3"> */}
+                        <button type="submit">Enviar</button>
+                    {/* </Link> */}
+                    {/* onClick={() => {onDataSelect(selectedOptions)}} */}
+                </form>
+            </div>
+        </>
+    );
+};
 
-  return (
-    <>
-      <div className='header'>
-        <Link to='/allergy1'><button>Volver</button></Link>
-        <h4>3 de 4</h4>
-      </div>
-
-      <div className='titulo'>
-        <h2>Ahora selecciona tus alergias e intolerancias.</h2>
-        <p>Los elementos marcados serán identificados en tus busquedas como peligrosos para ti.</p>
-      </div>
-        <div className='letras'>
-           {letras.map((letra, id) => (
-                <button key={id}>{letra}</button>
-            ))} 
-        </div>
-        
-        <div className='alergenos'>
-
-            <form onSubmit={handleSubmit(onSubmit)}>
-            <label>
-               <p>A</p>
-              {alergenos.filter(a => a.startsWith('A')).map((A, index) => (
-                <div key={index} className={isChecked[A] ? 'boton' : 'noboton'}>
-                <input
-                    onClick={() =>handleClick(A)}
-                    type="checkbox"
-                    className='check'
-                    id={A}
-                    {...register(A)}
-                  />
-                  <label htmlFor={A}>{A}</label>
-                </div>
-            ))} 
-            </label>
-
-            <label> 
-              <p>B</p>
-            {alergenos.filter(b => b.startsWith('B')).map((B, index) => (
-                <div key={index}>
-                  <input
-                    type="checkbox"
-                    id={B}
-                    {...register(B)}
-                  />
-                  <label htmlFor={B}>{B}</label>
-                </div>
-            ))} 
-            </label>
-
-            <label> C
-            {alergenos.filter(c => c.startsWith('C')).map((C, index) => (
-                <div key={index}>
-                  <input
-                    type="checkbox"
-                    id={C}
-                    {...register(C)}
-                  />
-                  <label htmlFor={C}>{C}</label>
-                </div>
-            ))} 
-            </label>
-
-            <label> E
-            {alergenos.filter(e => e.startsWith('E')).map((alergeno, index) => (
-                <div key={index}>
-                  <input
-                    type="checkbox"
-                    id={alergeno}
-                    {...register(alergeno)}
-                  />
-                  <label htmlFor={alergeno}>{alergeno}</label>
-                </div>
-            ))} 
-            </label>
-
-            <label> F
-            {alergenos.filter(f => f.startsWith('F')).map((alergeno, index) => (
-                <div key={index}>
-                  <input
-                    type="checkbox"
-                    id={alergeno}
-                    {...register(alergeno)}
-                  />
-                  <label htmlFor={alergeno}>{alergeno}</label>
-                </div>
-            ))} 
-            </label>
-
-            <label> G
-            {alergenos.filter(g => g.startsWith('G')).map((alergeno, index) => (
-                <div key={index}>
-                  <input
-                    type="checkbox"
-                    id={alergeno}
-                    {...register(alergeno)}
-                  />
-                  <label htmlFor={alergeno}>{alergeno}</label>
-                </div>
-            ))} 
-            </label>
-            
-            <label> H
-            {alergenos.filter(h => h.startsWith('H')).map((alergeno, index) => (
-                <div key={index}>
-                  <input
-                    type="checkbox"
-                    id={alergeno}
-                    {...register(alergeno)}
-                  />
-                  <label htmlFor={alergeno}>{alergeno}</label>
-                </div>
-            ))} 
-            </label>
-            
-            <label> K
-            {alergenos.filter(k => k.startsWith('K')).map((alergeno, index) => (
-                <div key={index}>
-                  <input
-                    type="checkbox"
-                    id={alergeno}
-                    {...register(alergeno)}
-                  />
-                  <label htmlFor={alergeno}>{alergeno}</label>
-                </div>
-            ))} 
-            </label>
-            
-            <label> L
-            {alergenos.filter(l => l.startsWith('L')).map((alergeno, index) => (
-                <div key={index}>
-                  <input
-                    type="checkbox"
-                    id={alergeno}
-                    {...register(alergeno)}
-                  />
-                  <label htmlFor={alergeno}>{alergeno}</label>
-                </div>
-            ))} 
-            </label>
-
-            <label> M
-            {alergenos.filter(m => m.startsWith('M')).map((alergeno, index) => (
-                <div key={index}>
-                  <input
-                    type="checkbox"
-                    id={alergeno}
-                    {...register(alergeno)}
-                  />
-                  <label htmlFor={alergeno}>{alergeno}</label>
-                </div>
-            ))} 
-            </label>
-
-            <label> N
-            {alergenos.filter(n => n.startsWith('N')).map((alergeno, index) => (
-                <div key={index}>
-                  <input
-                    type="checkbox"
-                    id={alergeno}
-                    {...register(alergeno)}
-                  />
-                  <label htmlFor={alergeno}>{alergeno}</label>
-                </div>
-            ))} 
-            </label>
-
-            <label> P
-            {alergenos.filter(p => p.startsWith('P')).map((alergeno, index) => (
-                <div key={index}>
-                  <input
-                    type="checkbox"
-                    id={alergeno}
-                    {...register(alergeno)}
-                  />
-                  <label htmlFor={alergeno}>{alergeno}</label>
-                </div>
-            ))} 
-            </label>
-
-            <label> S
-            {alergenos.filter(s => s.startsWith('S')).map((alergeno, index) => (
-                <div key={index}>
-                  <input
-                    type="checkbox"
-                    id={alergeno}
-                    {...register(alergeno)}
-                  />
-                  <label htmlFor={alergeno}>{alergeno}</label>
-                </div>
-            ))} 
-            </label>
-
-            <label> T
-            {alergenos.filter(t => t.startsWith('T')).map((alergeno, index) => (
-                <div key={index}>
-                  <input
-                    type="checkbox"
-                    id={alergeno}
-                    {...register(alergeno)}
-                  />
-                  <label htmlFor={alergeno}>{alergeno}</label>
-                </div>
-            ))} 
-            </label>
-
-            <button type='submit'>Enviar</button>
-
-            </form>
-           
-        </div>
-      
-    </>
-  )
-}
-
-export default SeleccionAlergias2
+export default SeleccionAlergias2;

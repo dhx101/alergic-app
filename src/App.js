@@ -15,32 +15,37 @@ import Welocome3 from "./welcome_page_3/Welcome3";
 import Welocome4 from "./welcome_page_4/Welcome4";
 import Perfil from "./components/Perfil/Perfil";
 import Favoritos from "./components/Favoritos/Favoritos";
+import Diario from './components/Diario';
 
 function App() {
-	return (
-		<>
-			<BrowserRouter>
-				<Routes>
-					<Route path="/login" element={<Login />} />
-					<Route path="/homeLog" element={<Homepage />} />
-					<Route path="/page1" element={<Welocome1 />} />
-					<Route path="/page2" element={<Welocome2 />} />
-					<Route path="/page3" element={<Welocome3 />} />
-					<Route path="/page4" element={<Welocome4 />} />
-					<Route path="/allergy1" element={<SeleccionAlergias />} />
-					<Route path="/allergy2" element={<SeleccionAlergias2 />} />
-					<Route path="/allergy3" element={<SeleccionAlergias3 />} />
-					<Route path="/allergy4" element={<SeleccionAlergias4 />} />
-					<Route path="/" element={<Home />} />
-					<Route path="/scanQR" element={<ScanQR />} />
-					<Route path="/scanBar" element={<ScanBarCode />} />
-					<Route path="/profile" element={<Perfil/>}/>
-					<Route path="/favorites" element={<Favoritos/>}/>
 
-				</Routes>
-			</BrowserRouter>
-		</>
-	);
+  
+
+  return (
+    <div>
+      <BrowserRouter>
+        <Routes>
+        <Route path="/login" element={<Login />} />
+          <Route path="/homeLog" element={<Homepage />} />
+          <Route path="/page1" element={<Welocome1 />} />
+          <Route path="/page2" element={<Welocome2 />} />
+          <Route path="/page3" element={<Welocome3 />} />
+          <Route path="/page4" element={<Welocome4 />} />
+          <Route path="/allergy1" element={<SeleccionAlergias/>}/>
+          <Route path="/allergy2" element={<SeleccionAlergias2 />}/>
+          <Route path="/allergy3" element={<SeleccionAlergias3 />}/>
+          <Route path="/allergy4" element={<SeleccionAlergias4/>}/>
+          <Route path="/" element={<Home />} />
+          <Route path="/scanQR" element={<ScanQR />} />
+          <Route path="/scanBar" element={<ScanBarCode />} />
+          <Route path="/diario" element={<Diario />} />
+          <Route path="/profile" element={<Perfil/>}/>
+					<Route path="/favorites" element={<Favoritos/>}/>
+        </Routes>
+      </BrowserRouter>
+    </div>
+  );
+
 }
 
 export default App;
