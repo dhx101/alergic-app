@@ -1,6 +1,8 @@
-{
-	"name": "Algo",
-	"barcode": "AAAAAAAA",
-	"QR": "",
-	"ingridients": []
-}
+[
+    {
+        "name":"Algo",
+        "barcode":"AAAAAAAA",
+        "QR":"",
+        "ingridients":[]
+    }
+]
