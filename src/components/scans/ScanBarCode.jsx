@@ -37,23 +37,24 @@ const ScanBarCode = () => {
 		html5QrcodeScanner.render(onScanSuccess);
 	}, []);
 	return (
-		<div>
+		<>
 			{scanResult ? (
 				<ScanResults itemBAR={scanResult} />
 			) : (
-				<>
-					<p>Escaneando...</p>
-					<p>
-						Tan solo tienes que centrar el <span>código de barras</span>del producto en el recuadro
+				<div className="scan">
+					<p className="scan-text">Escaneando...</p>
+					<p className="scan-text">
+						Tan solo tienes que centrar el <span className="scan-text__code">código de barras </span> del
+						producto en el recuadro
 					</p>
-					<div id="reader"></div>
-				</>
+					<div id="reader" className="reader-bar"></div>
+					<nav className="scan-nav">
+						<Link className="scan-nav__link" to="/scanBar"><img src="./assets/svg/barcode.svg" alt="BARCODE"/></Link>
+						<Link className="scan-nav__link" to="/scanQR"><img src="./assets/svg/qrcode.svg" alt="QR CODE"/></Link>
+					</nav>
+				</div>
 			)}
-			<nav>
-				<Link to="/scanBar">BAR CODE</Link>
-				<Link to="/scanQR">QR CODE</Link>
-			</nav>
-		</div>
+		</>
 	);
 };
 

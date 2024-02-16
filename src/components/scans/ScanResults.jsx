@@ -18,7 +18,6 @@ const ScanResults = ({ itemQR, itemBAR }) => {
 			ingredientesAlergias.push(item.toLowerCase())
 	);
 
-	// AAAAAA
 	const getUser = async (userID = 1) => {
 		try {
 			const myUser = await axios.get(`${baseURL}/users/${userID}`);
@@ -33,7 +32,7 @@ const ScanResults = ({ itemQR, itemBAR }) => {
 				const database = await axios.get(
 					`${baseURL}/food/barcode/${itemBAR}`
 				);
-
+        
 				setFood(database.data);
 			}
 			if (itemQR) {
@@ -46,6 +45,7 @@ const ScanResults = ({ itemQR, itemBAR }) => {
 			console.error(error);
 		}
 	};
+  
 	useEffect(() => {
 		if (itemBAR) {
 			getFoods(itemBAR);
@@ -56,6 +56,7 @@ const ScanResults = ({ itemQR, itemBAR }) => {
 	}, [itemQR, itemBAR]);
 
 	useEffect(() => {
+
 		getUser("65ce1d5f5a7ab82f5704a5ce");
 	}, []);
 	return (
@@ -65,8 +66,8 @@ const ScanResults = ({ itemQR, itemBAR }) => {
 				{food ? (
 					<div>
 						<div>
-						<img src={food?.img} alt={food?.name}/>
-						<img src="" alt=""/>
+							<img src={food?.img} alt={food?.name} />
+							<img src="" alt="" />
 						</div>
 						<p>{food?.name}</p>
 						<p>
@@ -79,6 +80,7 @@ const ScanResults = ({ itemQR, itemBAR }) => {
 								{ingredientesAlergias.map(
 									(item, index) => item
 								)}
+
 							</p>
 						)}
 					</div>
@@ -87,6 +89,7 @@ const ScanResults = ({ itemQR, itemBAR }) => {
 				)}
 			</div>
 			 <Link to="/">Escanea otro producto</Link>
+
 		</div>
 	);
 };
