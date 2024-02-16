@@ -16,7 +16,8 @@ const SeleccionAlergias4 = () => {
             <h2>Hemos terminado, ya puedes escanear tu primer producto.</h2>
         </div>
 
-        <button>Escanea un producto</button>
+        <Link to='/scanQR'><button>Escanea un producto</button></Link>
+        
     </div>
   )
 }

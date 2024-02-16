@@ -1,6 +1,5 @@
-// import axios from 'axios';
+import axios from 'axios';
 import React from 'react'
-// import { useState } from "react"
 import { useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom';
 
@@ -10,12 +9,13 @@ const SeleccionAlergias = () => {
   const submit = async (data)=> {
     console.log(data);
 
-    // try {
-    //   const response = await axios.post("emergency_contact.json", data);
-    //   console.log('Datos enviados correctamente:', response.data);
-    // } catch (error) {
-    //   console.error('Error al enviar los datos:', error);
-    // }
+    try {
+      const response = await axios.post('http://localhost:5000/emergency', data)
+      console.log(response);
+      
+    } catch (error) {
+      console.error('Error al enviar los datos:', error);
+    }
 
 
   }
