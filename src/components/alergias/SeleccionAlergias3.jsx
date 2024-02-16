@@ -8,9 +8,11 @@ const SeleccionAlergias3 = () => {
     const getUser = async (idUser = "65ccefa12343b9a461d701af") => {
         const res = await axios.get(`http://localhost:5000/users/${idUser}`);
         console.log("resdata?", res.data.allergies);
-        setAlergias(res.data.allergies);
+        setAlergias(Object.keys(res.data.allergies));
+
         return res.data.allergies;
     };
+
     useEffect(() => {
         getUser();
     }, []);
@@ -30,13 +32,13 @@ const SeleccionAlergias3 = () => {
 
             <div>
                 <h4>Marca para deseleccionar o añadir uno nuevo.</h4>
-                {/* Aqui falta llamar a los alergenos seleccionados para que los pinte aqui */}
+                
                 {alergias?.map((item, index) => (
                     <p key={index}>{item}</p>
                 ))}
-                <Link to="/allergy2">
+                {/* <Link to="/allergy2">
                     <button>Añadir nuevos</button>
-                </Link>
+                </Link> */}
             </div>
 
             <button>Confirmar</button>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./SeleccionAlergias2.css";
 import axios from "axios";
 
@@ -54,6 +54,8 @@ const SeleccionAlergias2 = () => {
         }));
     };
 
+    const navigate = useNavigate()
+
     const onSubmit = (data) => {
         console.log("Que me devuelve esto", data);
         const alergenos2 = Object.entries(alergenosSeleccionados)
@@ -68,6 +70,7 @@ const SeleccionAlergias2 = () => {
         };
 
         patch(datos);
+        navigate('/allergy3')
     };
 
     return (
@@ -123,9 +126,9 @@ const SeleccionAlergias2 = () => {
                             ))}
                         </div>
                     ))}
-                    <Link to="/allergy3">
+                    {/* <Link to="/allergy3"> */}
                         <button type="submit">Enviar</button>
-                    </Link>
+                    {/* </Link> */}
                     {/* onClick={() => {onDataSelect(selectedOptions)}} */}
                 </form>
             </div>
