@@ -4,22 +4,24 @@ import { Link } from "react-router-dom";
 
 const ScanResults = ({ itemQR, itemBAR }) => {
 	let ingredientesAlergias = [];
-	const baseURL = "http://localhost:3000";
+	const baseURL = "http://localhost:5000";
 	const [food, setFood] = useState(null);
 	const [user, setUser] = useState(null);
-
-	user?.alergies.map(
-		(item, index) =>
-			food.ingredientes.includes(item) && ingredientesAlergias.push(item)
+	const lowerCaseAlergias = user?.allergies.map((item) => item.toLowerCase());
+	const lowerCaseIngredientes = food?.ingredientes.map((item) =>
+		item.toLowerCase()
+	);
+	
+	lowerCaseAlergias?.map(
+		(item) =>
+			lowerCaseIngredientes?.includes(item.toLowerCase()) &&
+			ingredientesAlergias.push(item.toLowerCase())
 	);
 
-	// AAAAAA
 	const getUser = async (userID = 1) => {
 		try {
-			const myUser = await axios.get(`${baseURL}/users?id=${userID}`);
-			setUser(myUser.data[0]);
-			console.log(myUser.data[0]);
-			console.log(`${baseURL}/users?id=${userID}`);
+			const myUser = await axios.get(`${baseURL}/users/${userID}`);
+			setUser(myUser.data);
 		} catch (error) {
 			console.error(error);
 		}
@@ -28,18 +30,22 @@ const ScanResults = ({ itemQR, itemBAR }) => {
 		try {
 			if (itemBAR) {
 				const database = await axios.get(
-					`${baseURL}/barcode?QR=${itemBAR}`
+					`${baseURL}/food/barcode/${itemBAR}`
 				);
-				setFood(database.data[0]);
+        
+				setFood(database.data);
 			}
 			if (itemQR) {
-				const database = await axios.get(`${baseURL}/food?qr=${itemQR}`);
-				setFood(database.data[0]);
+				const database = await axios.get(
+					`${baseURL}/food/qr/${itemQR}`
+				);
+				setFood(database.data);
 			}
 		} catch (error) {
 			console.error(error);
 		}
 	};
+  
 	useEffect(() => {
 		if (itemBAR) {
 			getFoods(itemBAR);
@@ -50,7 +56,8 @@ const ScanResults = ({ itemQR, itemBAR }) => {
 	}, [itemQR, itemBAR]);
 
 	useEffect(() => {
-		getUser();
+
+		getUser("65ce1d5f5a7ab82f5704a5ce");
 	}, []);
 	return (
 		<div>
@@ -70,7 +77,10 @@ const ScanResults = ({ itemQR, itemBAR }) => {
 						{ingredientesAlergias.length !== 0 && (
 							<p>
 								Eres alérgico a:
-								{ingredientesAlergias.map((item, index) => item)}
+								{ingredientesAlergias.map(
+									(item, index) => item
+								)}
+
 							</p>
 						)}
 					</div>
@@ -78,7 +88,8 @@ const ScanResults = ({ itemQR, itemBAR }) => {
 					"No hemos encontrado el alimento que buscabas"
 				)}
 			</div>
-			<Link to="/">Escanea otro producto</Link>
+			 <Link to="/">Escanea otro producto</Link>
+
 		</div>
 	);
 };
