@@ -1,7 +1,8 @@
-
+[
     {
         "email":"prueba@gmail.com",
         "password":"1234",
         "name": "David Apellido Apellido",
         "alergies":["A", "B","C"]
     }
+]
