@@ -12,7 +12,9 @@ export const APIHeaders = {
 };
 
 export const API = axios.create({
-  baseURL: process.env.REACT_APP_BACK_URL,
-  timeout: 6000,
-  headers: APIHeaders,
+
+    baseURL: "http://localhost:5000",
+    timeout: 6000,
+    headers: APIHeaders
 });
+

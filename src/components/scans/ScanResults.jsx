@@ -11,7 +11,7 @@ const ScanResults = ({ itemQR, itemBAR }) => {
 	const lowerCaseIngredientes = food?.ingredientes.map((item) =>
 		item.toLowerCase()
 	);
-	
+
 	lowerCaseAlergias?.map(
 		(item) =>
 			lowerCaseIngredientes?.includes(item.toLowerCase()) &&
@@ -32,7 +32,7 @@ const ScanResults = ({ itemQR, itemBAR }) => {
 				const database = await axios.get(
 					`${baseURL}/food/barcode/${itemBAR}`
 				);
-        
+
 				setFood(database.data);
 			}
 			if (itemQR) {
@@ -45,7 +45,7 @@ const ScanResults = ({ itemQR, itemBAR }) => {
 			console.error(error);
 		}
 	};
-  
+
 	useEffect(() => {
 		if (itemBAR) {
 			getFoods(itemBAR);
@@ -56,15 +56,14 @@ const ScanResults = ({ itemQR, itemBAR }) => {
 	}, [itemQR, itemBAR]);
 
 	useEffect(() => {
-
 		getUser("65ce1d5f5a7ab82f5704a5ce");
 	}, []);
 	return (
-		<div>
+		<div className="scan-results">
 			Aqui tienes tu resultado
 			<div>
 				{food ? (
-					<div>
+					<div className="scan-results-info">
 						<div>
 							<img src={food?.img} alt={food?.name} />
 							<img src="" alt="" />
@@ -75,21 +74,22 @@ const ScanResults = ({ itemQR, itemBAR }) => {
 							{food?.ingredientes.map((item, index) => item)}.
 						</p>
 						{ingredientesAlergias.length !== 0 && (
-							<p>
-								Eres alérgico a:
-								{ingredientesAlergias.map(
-									(item, index) => item
-								)}
-
-							</p>
+							<>
+								<p>
+									Eres alérgico a:
+									{ingredientesAlergias.map(
+										(item, index) => item
+									)}
+								</p>
+								<p>No puedes comer este producto</p>
+							</>
 						)}
 					</div>
 				) : (
 					"No hemos encontrado el alimento que buscabas"
 				)}
 			</div>
-			 <Link to="/">Escanea otro producto</Link>
-
+			<Link to="/">Escanea otro producto</Link>
 		</div>
 	);
 };
