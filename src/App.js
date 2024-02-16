@@ -15,37 +15,39 @@ import Welocome3 from "./welcome_page_3/Welcome3";
 import Welocome4 from "./welcome_page_4/Welcome4";
 import Perfil from "./components/Perfil/Perfil";
 import Favoritos from "./components/Favoritos/Favoritos";
-import Diario from './components/Diario';
+import Diario from "./components/Diario";
+import { useState } from "react";
+import { JwtContext } from "./shared/components/JwtContext";
 
 function App() {
+	const [jwt, setJwt] = useState(localStorage.getItem("token") || null);
 
-  
-
-  return (
-    <div>
-      <BrowserRouter>
-        <Routes>
-        <Route path="/login" element={<Login />} />
-          <Route path="/homeLog" element={<Homepage />} />
-          <Route path="/page1" element={<Welocome1 />} />
-          <Route path="/page2" element={<Welocome2 />} />
-          <Route path="/page3" element={<Welocome3 />} />
-          <Route path="/page4" element={<Welocome4 />} />
-          <Route path="/allergy1" element={<SeleccionAlergias/>}/>
-          <Route path="/allergy2" element={<SeleccionAlergias2 />}/>
-          <Route path="/allergy3" element={<SeleccionAlergias3 />}/>
-          <Route path="/allergy4" element={<SeleccionAlergias4/>}/>
-          <Route path="/" element={<Home />} />
-          <Route path="/scanQR" element={<ScanQR />} />
-          <Route path="/scanBar" element={<ScanBarCode />} />
-          <Route path="/diario" element={<Diario />} />
-          <Route path="/profile" element={<Perfil/>}/>
-					<Route path="/favorites" element={<Favoritos/>}/>
-        </Routes>
-      </BrowserRouter>
-    </div>
-  );
-
+	return (
+		<JwtContext.Provider value={{ jwt, setJwt }}>
+			<div>
+				<BrowserRouter>
+					<Routes>
+						<Route path="/login" element={<Login />} />
+						{jwt && <Route path="/homeLog" element={<Homepage />} />}
+						{jwt && <Route path="/page1" element={<Welocome1 />} />}
+						{jwt && <Route path="/page2" element={<Welocome2 />} />}
+						{jwt && <Route path="/page3" element={<Welocome3 />} />}
+						{jwt && <Route path="/page4" element={<Welocome4 />} />}
+						{jwt && <Route path="/allergy1" element={<SeleccionAlergias />} />}
+						{jwt && <Route path="/allergy2" element={<SeleccionAlergias2 />} />}
+						{jwt && <Route path="/allergy3" element={<SeleccionAlergias3 />} />}
+						{jwt && <Route path="/allergy4" element={<SeleccionAlergias4 />} />}
+						{jwt && <Route path="/" element={<Home />} />}
+						{jwt && <Route path="/scanQR" element={<ScanQR />} />}
+						{jwt && <Route path="/scanBar" element={<ScanBarCode />} />}
+						{jwt && <Route path="/profile" element={<Perfil />} />}
+						{jwt && <Route path="/favorites" element={<Favoritos />} />}
+						{jwt && <Route path="/diario" element={<Diario />} />}
+					</Routes>
+				</BrowserRouter>
+			</div>
+		</JwtContext.Provider>
+	);
 }
 
 export default App;

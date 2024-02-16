@@ -1,17 +1,35 @@
-import React, { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link } from "react-router-dom";
 import MenuFooter from "../components/MenuFooter/MenuFooter";
+import axios from "axios";
+import { JwtContext } from "../shared/components/JwtContext";
 
 const Home = () => {
 	const [showList, setShowList] = useState(false);
 	const [modal, setModal] = useState(false);
-
+	const {setJwt} = useContext(JwtContext)
 	const showInfo = () => {
 		setShowList(!showList);
 	};
 	const showModal = (value) => {
 		setModal(value);
 	};
+	const logToken = () => {
+		let token = JSON.parse(localStorage.getItem("user"));
+		console.log(token);
+	};
+	const singOut = () => {
+		try {
+			axios.post("http://localhost:5000/logout").then((res) => {
+				localStorage.setItem("token", null);
+				localStorage.setItem("user", null);
+				setJwt(false)
+			});
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
 	return (
 		<>
 			<header className="header">
@@ -21,33 +39,42 @@ const Home = () => {
 					<div className="menu-bar"></div>
 				</div>
 				<nav className="header-nav">
-					<ul
-						className={
-							showList
-								? "header-nav-list show-list"
-								: "header-nav-list"
-						}>
+					<ul className={showList ? "header-nav-list show-list" : "header-nav-list"}>
 						<button onClick={showInfo}>X</button>
 						<li>
-							<Link to="/profile">Perfil</Link>
+							<Link className="header-nav-list__item" to="/profile">
+								Perfil
+							</Link>
 						</li>
 						<li>
-							<Link to="/favorites">Favoritos</Link>
+							<Link className="header-nav-list__item" to="/favorites">
+								Favoritos
+							</Link>
 						</li>
 						<li>
-							<Link to="/diary">Diario</Link>
+							<Link className="header-nav-list__item" to="/diary">
+								Diario
+							</Link>
 						</li>
 						<li>
-							<Link to="/share">Compartir</Link>
+							<Link className="header-nav-list__item" to="/share">
+								Compartir
+							</Link>
 						</li>
 						<li>
-							<Link to="/traductor">Traductor</Link>
+							<Link className="header-nav-list__item" to="/traductor">
+								Traductor
+							</Link>
 						</li>
 						<li>
-							<Link to="/legal">Términos</Link>
+							<Link className="header-nav-list__item" to="/legal">
+								Términos
+							</Link>
 						</li>
 						<li>
-							<Link to="/signout">Salir</Link>
+							<Link className="header-nav-list__item" to="/login" onClick={singOut}>
+								Sing Out
+							</Link>
 						</li>
 					</ul>
 				</nav>
@@ -62,9 +89,7 @@ const Home = () => {
 						}}>
 						i
 					</p>
-					<p className={modal ? "modal-show" : "modal"}>
-						Gracias por usar AlergicAPP
-					</p>
+					<p className={modal ? "modal-show" : "modal"}>Gracias por usar AlergicAPP</p>
 				</div>
 			</header>
 			<main className="main">
@@ -75,23 +100,27 @@ const Home = () => {
 				</div>
 				<ul className="main-nav">
 					<li className="main-nav-item">
-						<Link className="main-nav__btn btn-scan" to="/scanBar">Escanear</Link>
+						<Link className="main-nav__btn btn-scan" to="/scanBar">
+							Escanear
+						</Link>
 						<p>Escanea un nuevo producto</p>
 					</li>
 					<li className="main-nav-item">
-						<Link className="main-nav__btn btn-search" to="/">Buscar</Link>
+						<Link className="main-nav__btn btn-search" to="/">
+							Buscar
+						</Link>
 						<p>Busca un comercio o restuarante para ti.</p>
 					</li>
 					<li className="main-nav-item ">
-						<a className="main-nav__btn btn-sos" href="tel:">SOS </a>
-						<p>
-							¿Necesitas ayuda urgente? contactamos con
-							emergencias
-						</p>
+						<a className="main-nav__btn btn-sos" href="tel:">
+							SOS{" "}
+						</a>
+						<p>¿Necesitas ayuda urgente? contactamos con emergencias</p>
 					</li>
 				</ul>
 			</main>
-			<MenuFooter/>
+			<button onClick={logToken}>Boton</button>
+			<MenuFooter />
 		</>
 	);
 };
