@@ -28,8 +28,8 @@ function App() {
 			<div>
 				<BrowserRouter>
 					<Routes>
-						<Route path="/login" element={<Login />} />
-						<Route path="/register" element={<Register />} />
+						{!jwt && <Route path="/login" element={<Login />} />}
+						{!jwt && <Route path="/register" element={<Register />} />}
 						{jwt && <Route path="/homeLog" element={<Homepage />} />}
 						{jwt && <Route path="/page1" element={<Welocome1 />} />}
 						{jwt && <Route path="/page2" element={<Welocome2 />} />}
