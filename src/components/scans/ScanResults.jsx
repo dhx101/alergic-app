@@ -52,30 +52,46 @@ const ScanResults = ({ itemQR, itemBAR }) => {
 			<div>
 				{food ? (
 					<div className="scan-results-info">
-						<div>
-							<img src={food?.img} alt={food?.name} />
-							<img src="" alt="" />
-						</div>
+						{ingredientesAlergias.length === 0 ? (
+							<>
+								<p>Este producto es apto para ti.</p>
+								<img
+									className="Apto"
+									src={food?.img}
+									alt={food?.name}
+								/>
+							</>
+						) : (
+							<>
+								<p>
+									Este producto <strong>NO</strong> es apto para ti.
+								</p>
+								<img
+									className="noApto"
+									src={food?.img}
+									alt={food?.name}
+								/>
+							</>
+						)}
 						<p>{food?.name}</p>
 						<p>
 							Este producto contiene:
-							{food?.ingredientes.map((item, index) => item)}.
+							<ul>
+								{food?.ingredientes.map((item, index) => (
+									<li>{item}</li>
+								))}
+							</ul>
 						</p>
-						{ingredientesAlergias.length !== 0 && (
-							<>
-								<p>
-									Eres alérgico a:
-									{ingredientesAlergias.map((item, index) => item)}
-								</p>
-								<p>No puedes comer este producto</p>
-							</>
-						)}
 					</div>
 				) : (
-					"No hemos encontrado el alimento que buscabas"
+					<p>"No hemos encontrado el alimento que buscabas"</p>
 				)}
 			</div>
-			<Link to="/">Escanea otro producto</Link>
+			<Link
+				className="botonazul"
+				to="/">
+				Escanea otro producto
+			</Link>
 		</div>
 	);
 };
