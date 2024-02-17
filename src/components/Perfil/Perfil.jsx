@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import GoMainMenu from "../GoMainMenu/GoMainMenu";
 import MenuFooter from "../MenuFooter/MenuFooter";
@@ -19,9 +18,9 @@ const Perfil = () => {
 				<p>¡Bienvenido {user?.fullname} !</p>
 				<div>
 					<p>Alergias:</p>
-					{user?.allergies.map((item, index) => (
+					{/* {user?.allergies.map((item, index) => (
 						<p>{item}</p>
-					))}
+					))} */}
 				</div>
 			</main>
 			<MenuFooter/>

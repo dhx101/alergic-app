@@ -9,9 +9,7 @@ const ScanResults = ({ itemQR, itemBAR }) => {
 	const [user, setUser] = useState(null);
 
 	const lowerCaseAlergias = user?.allergies.map((item) => item.toLowerCase());
-	const lowerCaseIngredientes = food?.ingredientes.map((item) =>
-		item.toLowerCase()
-	);
+	const lowerCaseIngredientes = food?.ingredientes.map((item) => item.toLowerCase());
 
 	console.log(lowerCaseAlergias, lowerCaseIngredientes);
 
@@ -20,26 +18,21 @@ const ScanResults = ({ itemQR, itemBAR }) => {
 			lowerCaseIngredientes?.includes(item.toLowerCase()) &&
 			ingredientesAlergias.push(item.toLowerCase())
 	);
-	const getFoods = async (itemQR) => {
-		try {
-			if (itemBAR) {
-				const database = await axios.get(
-					`${baseURL}/food/barcode/${itemBAR}`
-				);
-
-				setFood(database.data);
-			}
-			if (itemQR) {
-				const database = await axios.get(
-					`${baseURL}/food/qr/${itemQR}`
-				);
-				setFood(database.data);
-			}
-		} catch (error) {
-		}
-	};
 
 	useEffect(() => {
+		const getFoods = async (itemQR) => {
+			try {
+				if (itemBAR) {
+					const database = await axios.get(`${baseURL}/food/barcode/${itemBAR}`);
+
+					setFood(database.data);
+				}
+				if (itemQR) {
+					const database = await axios.get(`${baseURL}/food/qr/${itemQR}`);
+					setFood(database.data);
+				}
+			} catch (error) {}
+		};
 		if (itemBAR) {
 			getFoods(itemBAR);
 		}
@@ -49,7 +42,7 @@ const ScanResults = ({ itemQR, itemBAR }) => {
 	}, [itemQR, itemBAR]);
 
 	useEffect(() => {
-		const userDatabase = JSON.parse(localStorage.getItem('user'))
+		const userDatabase = JSON.parse(localStorage.getItem("user"));
 		// console.log(userDatabase);
 		setUser(userDatabase);
 	}, []);
@@ -59,32 +52,46 @@ const ScanResults = ({ itemQR, itemBAR }) => {
 			<div>
 				{food ? (
 					<div className="scan-results-info">
-						<div>
-							<img src={food?.img} alt={food?.name} />
-							<img src="" alt="" />
-						</div>
+						{ingredientesAlergias.length === 0 ? (
+							<>
+								<p>Este producto es apto para ti.</p>
+								<img
+									className="Apto"
+									src={food?.img}
+									alt={food?.name}
+								/>
+							</>
+						) : (
+							<>
+								<p>
+									Este producto <strong>NO</strong> es apto para ti.
+								</p>
+								<img
+									className="noApto"
+									src={food?.img}
+									alt={food?.name}
+								/>
+							</>
+						)}
 						<p>{food?.name}</p>
 						<p>
 							Este producto contiene:
-							{food?.ingredientes.map((item, index) => item)}.
+							<ul>
+								{food?.ingredientes.map((item, index) => (
+									<li>{item}</li>
+								))}
+							</ul>
 						</p>
-						{ingredientesAlergias.length !== 0 && (
-							<>
-								<p>
-									Eres alérgico a:
-									{ingredientesAlergias.map(
-										(item, index) => item
-									)}
-								</p>
-								<p>No puedes comer este producto</p>
-							</>
-						)}
 					</div>
 				) : (
-					"No hemos encontrado el alimento que buscabas"
+					<p>"No hemos encontrado el alimento que buscabas"</p>
 				)}
 			</div>
-			<Link to="/">Escanea otro producto</Link>
+			<Link
+				className="botonazul"
+				to="/">
+				Escanea otro producto
+			</Link>
 		</div>
 	);
 };

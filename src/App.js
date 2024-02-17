@@ -18,6 +18,7 @@ import Favoritos from "./components/Favoritos/Favoritos";
 import Diario from "./components/Diario";
 import { useState } from "react";
 import { JwtContext } from "./shared/components/JwtContext";
+import Register from "./components/Register/Register";
 
 function App() {
 	const [jwt, setJwt] = useState(localStorage.getItem("token") || null);
@@ -27,22 +28,109 @@ function App() {
 			<div>
 				<BrowserRouter>
 					<Routes>
-						<Route path="/login" element={<Login />} />
-						{jwt && <Route path="/homeLog" element={<Homepage />} />}
-						{jwt && <Route path="/page1" element={<Welocome1 />} />}
-						{jwt && <Route path="/page2" element={<Welocome2 />} />}
-						{jwt && <Route path="/page3" element={<Welocome3 />} />}
-						{jwt && <Route path="/page4" element={<Welocome4 />} />}
-						{jwt && <Route path="/allergy1" element={<SeleccionAlergias />} />}
-						{jwt && <Route path="/allergy2" element={<SeleccionAlergias2 />} />}
-						{jwt && <Route path="/allergy3" element={<SeleccionAlergias3 />} />}
-						{jwt && <Route path="/allergy4" element={<SeleccionAlergias4 />} />}
-						{jwt && <Route path="/" element={<Home />} />}
-						{jwt && <Route path="/scanQR" element={<ScanQR />} />}
-						{jwt && <Route path="/scanBar" element={<ScanBarCode />} />}
-						{jwt && <Route path="/profile" element={<Perfil />} />}
-						{jwt && <Route path="/favorites" element={<Favoritos />} />}
-						{jwt && <Route path="/diary" element={<Diario />} />}
+						{!jwt && (
+							<Route
+								path="/login"
+								element={<Login />}
+							/>
+						)}
+						{!jwt && (
+							<Route
+								path="/register"
+								element={<Register />}
+							/>
+						)}
+						{jwt && (
+							<Route
+								path="/homeLog"
+								element={<Homepage />}
+							/>
+						)}
+						{jwt && (
+							<Route
+								path="/page1"
+								element={<Welocome1 />}
+							/>
+						)}
+						{jwt && (
+							<Route
+								path="/page2"
+								element={<Welocome2 />}
+							/>
+						)}
+						{jwt && (
+							<Route
+								path="/page3"
+								element={<Welocome3 />}
+							/>
+						)}
+						{jwt && (
+							<Route
+								path="/page4"
+								element={<Welocome4 />}
+							/>
+						)}
+						{jwt && (
+							<Route
+								path="/allergy1"
+								element={<SeleccionAlergias />}
+							/>
+						)}
+						{jwt && (
+							<Route
+								path="/allergy2"
+								element={<SeleccionAlergias2 />}
+							/>
+						)}
+						{jwt && (
+							<Route
+								path="/allergy3"
+								element={<SeleccionAlergias3 />}
+							/>
+						)}
+						{jwt && (
+							<Route
+								path="/allergy4"
+								element={<SeleccionAlergias4 />}
+							/>
+						)}
+						{jwt && (
+							<Route
+								path="/"
+								element={<Home />}
+							/>
+						)}
+						{jwt && (
+							<Route
+								path="/scanQR"
+								element={<ScanQR />}
+							/>
+						)}
+						{jwt && (
+							<Route
+								path="/scanBar"
+								element={<ScanBarCode />}
+							/>
+						)}
+						{jwt && (
+							<Route
+								path="/profile"
+								element={<Perfil />}
+							/>
+						)}
+						{jwt && (
+							<Route
+								path="/favorites"
+								element={<Favoritos />}
+							/>
+						)}
+						{jwt && (
+							<Route
+								path="/diario"
+								element={<Diario />}
+							/>
+						)}
+
 					</Routes>
 				</BrowserRouter>
 			</div>
