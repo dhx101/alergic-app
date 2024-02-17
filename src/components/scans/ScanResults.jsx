@@ -9,9 +9,7 @@ const ScanResults = ({ itemQR, itemBAR }) => {
 	const [user, setUser] = useState(null);
 
 	const lowerCaseAlergias = user?.allergies.map((item) => item.toLowerCase());
-	const lowerCaseIngredientes = food?.ingredientes.map((item) =>
-		item.toLowerCase()
-	);
+	const lowerCaseIngredientes = food?.ingredientes.map((item) => item.toLowerCase());
 
 	console.log(lowerCaseAlergias, lowerCaseIngredientes);
 
@@ -20,26 +18,21 @@ const ScanResults = ({ itemQR, itemBAR }) => {
 			lowerCaseIngredientes?.includes(item.toLowerCase()) &&
 			ingredientesAlergias.push(item.toLowerCase())
 	);
-	const getFoods = async (itemQR) => {
-		try {
-			if (itemBAR) {
-				const database = await axios.get(
-					`${baseURL}/food/barcode/${itemBAR}`
-				);
-
-				setFood(database.data);
-			}
-			if (itemQR) {
-				const database = await axios.get(
-					`${baseURL}/food/qr/${itemQR}`
-				);
-				setFood(database.data);
-			}
-		} catch (error) {
-		}
-	};
 
 	useEffect(() => {
+		const getFoods = async (itemQR) => {
+			try {
+				if (itemBAR) {
+					const database = await axios.get(`${baseURL}/food/barcode/${itemBAR}`);
+
+					setFood(database.data);
+				}
+				if (itemQR) {
+					const database = await axios.get(`${baseURL}/food/qr/${itemQR}`);
+					setFood(database.data);
+				}
+			} catch (error) {}
+		};
 		if (itemBAR) {
 			getFoods(itemBAR);
 		}
@@ -49,7 +42,7 @@ const ScanResults = ({ itemQR, itemBAR }) => {
 	}, [itemQR, itemBAR]);
 
 	useEffect(() => {
-		const userDatabase = JSON.parse(localStorage.getItem('user'))
+		const userDatabase = JSON.parse(localStorage.getItem("user"));
 		// console.log(userDatabase);
 		setUser(userDatabase);
 	}, []);
@@ -72,9 +65,7 @@ const ScanResults = ({ itemQR, itemBAR }) => {
 							<>
 								<p>
 									Eres alérgico a:
-									{ingredientesAlergias.map(
-										(item, index) => item
-									)}
+									{ingredientesAlergias.map((item, index) => item)}
 								</p>
 								<p>No puedes comer este producto</p>
 							</>
