@@ -15,7 +15,7 @@ const Welocome2 = () => {
       </div>
       <div className="page1-buttons">
       <Link to={"/login"}>Saltar</Link>
-				<Link to={"/page3"}>Saltar</Link>
+				<Link to={"/page3"}>Siguiente &#8250;</Link>
       </div>
     </div>
   );
