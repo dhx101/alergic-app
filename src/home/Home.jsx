@@ -57,16 +57,6 @@ const Home = () => {
 							</Link>
 						</li>
 						<li>
-							<Link className="header-nav-list__item" to="/share">
-								Compartir
-							</Link>
-						</li>
-						<li>
-							<Link className="header-nav-list__item" to="/traductor">
-								Traductor
-							</Link>
-						</li>
-						<li>
 							<Link className="header-nav-list__item" to="/legal">
 								Términos
 							</Link>

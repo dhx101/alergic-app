@@ -6,26 +6,26 @@ import { JwtContext } from "../../shared/components/JwtContext";
 
 const Register = () => {
 	const { register, handleSubmit } = useForm();
-  const navigate = useNavigate()
-  const { jwt ,setJwt } = useContext(JwtContext);
+	const navigate = useNavigate();
+	const { jwt, setJwt } = useContext(JwtContext);
 	const onSubmit = async (formData) => {
 		console.log("enviado");
 		try {
-			const res = await axios.post("http://localhost:5000/registro", formData)
-      console.log(res.data);
-      try {
-        const logIn = await axios.post("http://localhost:5000/login", formData);
-        console.log(logIn.data);
-        localStorage.setItem("token", logIn.data.data.token);
-        localStorage.setItem("user", JSON.stringify(logIn.data.data.user));
-        setJwt(true);
-        console.log("todo correcto, hacinedo log ing", localStorage.getItem('token'));
-        if(jwt) {
-          navigate("/allergy1")
-        }
-      } catch (error) {
-        console.error("error LogIn", error);
-      }
+			const res = await axios.post("http://localhost:5000/registro", formData);
+			console.log(res.data);
+			try {
+				const logIn = await axios.post("http://localhost:5000/login", formData);
+				console.log(logIn.data);
+				localStorage.setItem("token", logIn.data.data.token);
+				localStorage.setItem("user", JSON.stringify(logIn.data.data.user));
+				setJwt(true);
+				console.log("todo correcto, hacinedo log ing", localStorage.getItem("token"));
+				if (jwt) {
+					navigate("/allergy1");
+				}
+			} catch (error) {
+				console.error("error LogIn", error);
+			}
 		} catch (error) {
 			console.error("error registro", error);
 		}
@@ -70,11 +70,8 @@ const Register = () => {
 						// pattern: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
 					})}
 				/>
-				<button type="submit">Enviar</button>
+				<button className="botonazul" type="submit">Guardar Perfil</button>
 			</form>
-			<div className="">
-				<img src="../../../public/assets/subir-foto.png" alt="logo" />
-			</div>
 		</>
 	);
 };

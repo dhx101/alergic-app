@@ -80,6 +80,12 @@ code {
   flex-direction: column;
   gap: 25px;
 }
+.Apto {
+	border: 5px solid green;
+}
+.noApto {
+	border: 5px solid red;
+}
 /* Home */
 .header {
 	display: flex;
