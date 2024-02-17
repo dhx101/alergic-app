@@ -5,15 +5,11 @@ import MenuFooter from "../MenuFooter/MenuFooter";
 
 const Perfil = () => {
 	const [user, setUser] = useState(null);
-	const baseURL = "http://localhost:5000";
-	const getProfile = async (userID) => {
-		const res = await axios.get(`${baseURL}/users/${userID}`);
-		console.log(res.data);
-		setUser(res.data);
-	};
-
+	
 	useEffect(() => {
-		getProfile("65ce1d5f5a7ab82f5704a5ce");
+		const userDatabase = JSON.parse(localStorage.getItem('user'))
+		// console.log(userDatabase);
+		setUser(userDatabase);
 	}, []);
 
 	return (
