@@ -130,6 +130,7 @@ function App() {
 								element={<Diario />}
 							/>
 						)}
+
 					</Routes>
 				</BrowserRouter>
 			</div>

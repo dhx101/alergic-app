@@ -109,7 +109,7 @@ const Home = () => {
 					</li>
 				</ul>
 			</main>
-			<button onClick={logToken}>Boton</button>
+			
 			<MenuFooter />
 		</>
 	);
