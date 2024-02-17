@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Welocome2 = () => {
   return (
@@ -13,8 +14,8 @@ const Welocome2 = () => {
         <p className="page1__text">Lleva tu Diario de compras y actividades.</p>
       </div>
       <div className="page1-buttons">
-        <button className="page1-buttons__exit">Saltar</button>
-        <button className="page1-buttons__next">Siguiente</button>
+      <Link to={"/login"}>Saltar</Link>
+				<Link to={"/page3"}>Saltar</Link>
       </div>
     </div>
   );
