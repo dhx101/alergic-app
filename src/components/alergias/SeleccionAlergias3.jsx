@@ -21,7 +21,7 @@ const SeleccionAlergias3 = () => {
     console.log(alergias);
 
     return (
-        <div>
+        <div className="containerdiario">
             <div className="botonelim2"></div>
             <div className="headerdiario">
                 <h2>Confirma tu selección.</h2>

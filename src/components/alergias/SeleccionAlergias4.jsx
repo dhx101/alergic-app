@@ -4,7 +4,7 @@ import "./SeleccionAlergias2.css";
 
 const SeleccionAlergias4 = () => {
   return (
-    <div>
+    <div className="containerdiario">
         <div className='volverheader'>
             {/* <button>Volver</button> */}
             <Link to='/allergy3' className="informe"><p>&#x276E; &nbsp;&nbsp; Volver</p></Link>

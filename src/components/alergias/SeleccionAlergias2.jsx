@@ -54,7 +54,7 @@ const SeleccionAlergias2 = () => {
         }));
     };
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     const onSubmit = (data) => {
         console.log("Que me devuelve esto", data);
@@ -70,67 +70,74 @@ const SeleccionAlergias2 = () => {
         };
 
         patch(datos);
-        navigate('/allergy3')
+        navigate("/allergy3");
     };
 
     return (
         <>
-            <div className="volverheader">
-                <Link to="/allergy1" className="informe">
-                <p>&#x276E; &nbsp;&nbsp; Volver</p>
-                </Link>
-                <h4>3 de 4</h4>
-            </div>
+            <div className="containerdiario">
+                <div className="volverheader">
+                    <Link to="/allergy1" className="informe">
+                        <p>&#x276E; &nbsp;&nbsp; Volver</p>
+                    </Link>
+                    <h4>3 de 4</h4>
+                </div>
 
-            <div className="headerdiario">
-                <h2>Ahora selecciona tus alergias e intolerancias.</h2>
-                <p>
-                    Los elementos marcados serán identificados en tus busquedas
-                    como peligrosos para ti.
-                </p>
-            </div>
-            <div className="letrasclick">
-                {letras?.map((letra, id) => (
-                    <div key={id} className="botongris">{letra}</div>
-                ))}
-            </div>
-
-            <div className="alergenos">
-                <form onSubmit={handleSubmit(onSubmit)}>
+                <div className="headerdiario">
+                    <h2>Ahora selecciona tus alergias e intolerancias.</h2>
+                    <p>
+                        Los elementos marcados serán identificados en tus
+                        busquedas como peligrosos para ti.
+                    </p>
+                </div>
+                <div className="letrasclick">
                     {letras?.map((letra, id) => (
-                        <div key={id} >
-                            <p className="letras">{letra}</p>
-
-                            {alergenosDB[letra].map((alergeno, id) => (
-                                <div key={id} className="check-container">
-                                    <input
-                                        type="checkbox"
-                                        className="check"
-                                        id={alergeno}
-                                        {...register(alergeno)}
-                                        checked={
-                                            alergenosSeleccionados[alergeno] ||
-                                            false
-                                        }
-                                        onChange={() =>
-                                            handleCheckboxChange(alergeno)
-                                        }
-                                    />
-                                    <label
-                                        htmlFor={alergeno}
-                                        className="noboton"
-                                    >
-                                        {alergeno}
-                                    </label>
-                                </div>
-                            ))}
+                        <div key={id} className="botongris">
+                            {letra}
                         </div>
                     ))}
-                    {/* <Link to="/allergy3"> */}
-                    <div className="botonazul" type="submit">Enviar</div>
-                    {/* </Link> */}
-                    {/* onClick={() => {onDataSelect(selectedOptions)}} */}
-                </form>
+                </div>
+
+                <div className="alergenos">
+                    <form onSubmit={handleSubmit(onSubmit)}>
+                        {letras?.map((letra, id) => (
+                            <div key={id}>
+                                <p className="letras">{letra}</p>
+
+                                {alergenosDB[letra].map((alergeno, id) => (
+                                    <div key={id} className="check-container">
+                                        <input
+                                            type="checkbox"
+                                            className="check"
+                                            id={alergeno}
+                                            {...register(alergeno)}
+                                            checked={
+                                                alergenosSeleccionados[
+                                                    alergeno
+                                                ] || false
+                                            }
+                                            onChange={() =>
+                                                handleCheckboxChange(alergeno)
+                                            }
+                                        />
+                                        <label
+                                            htmlFor={alergeno}
+                                            className="noboton"
+                                        >
+                                            {alergeno}
+                                        </label>
+                                    </div>
+                                ))}
+                            </div>
+                        ))}
+                        {/* <Link to="/allergy3"> */}
+                        <div className="botonazul" type="submit">
+                            Enviar
+                        </div>
+                        {/* </Link> */}
+                        {/* onClick={() => {onDataSelect(selectedOptions)}} */}
+                    </form>
+                </div>
             </div>
         </>
     );

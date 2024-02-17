@@ -63,11 +63,7 @@ const Diario = () => {
                             src={item.imagen}
                             alt={item.producto}
                             className="imagen"
-                            style={{
-                                height: "50px",
-                                width: "50px",
-                                backgroundSize: "cover",
-                            }}
+                            
                         />
                     </div>
 
