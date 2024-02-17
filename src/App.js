@@ -42,7 +42,7 @@ function App() {
 						{jwt && <Route path="/scanBar" element={<ScanBarCode />} />}
 						{jwt && <Route path="/profile" element={<Perfil />} />}
 						{jwt && <Route path="/favorites" element={<Favoritos />} />}
-						{jwt && <Route path="/diario" element={<Diario />} />}
+						{jwt && <Route path="/diary" element={<Diario />} />}
 					</Routes>
 				</BrowserRouter>
 			</div>
