@@ -1,23 +1,56 @@
+.letrasclick {
+    
+    width: 50%;
+    height:15%;
+    border: 1px solid rgb(192, 191, 191); 
+    border-radius: 5px;
+    margin-left: auto;
+    margin-right: auto;
+}
 
-input[type="checkbox"].check {
+ input[type="checkbox"].check {
     display: none;
 }
 
+.check-container {
+    display: inline;
+}
+.letras {
+    display: flex;
+    border-bottom: 1px solid rgb(179, 179, 179); 
+    margin-bottom: 5%;
+}
+
 .boton {
-    background-color: rgb(209, 90, 90);
-    padding: 0.5%;
+    background-color: rgb(255, 0, 55);
+    padding: 2%;
+    margin: 2%;
     border-radius: 50px;
     display: inline-block;
     cursor: pointer;
     color:white;
 }
 
-.noboton {
-    background-color: rgb(233, 233, 233);
-    padding: 0.5%;
+.botongris {
+    background-color: rgb(236, 47, 88);
+    padding: 5%;
+    margin: 5%;
     border-radius: 50px;
     display: inline-block;
     cursor: pointer;
+    color:white;
+    font-weight: bold;
+}
+
+.noboton {
+    color: rgb(179, 179, 179);
+    border: 3px solid rgb(179, 179, 179); 
+    padding: 2%;
+    margin: 1%;
+    border-radius: 50px;
+    display: inline-block;
+    cursor: pointer;
+    font-weight: bold;
 }
 
 .boton:hover {
@@ -26,7 +59,7 @@ input[type="checkbox"].check {
 }
 
 .noboton:hover {
-    background-color: rgb(179, 179, 179);
+    background-color: rgb(219, 219, 219);
     
 }
 
@@ -44,7 +77,8 @@ input[type="checkbox"].check {
 
 input:checked+label{
     background-color: rgb(209, 90, 90);
-    padding: 0.5%;
+    padding: 2%;
+    margin: 1%;
     border-radius: 50px;
     display: inline-block;
     cursor: pointer;

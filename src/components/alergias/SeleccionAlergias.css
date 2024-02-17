@@ -1,0 +1,39 @@
+.volverheader {
+    display: flex;
+    gap: 40%;
+    margin: 2% 0;
+}
+
+.informe {
+    text-decoration: none;
+    color: rgb(22, 207, 231);
+    font-weight: bold;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 30px; /* Espacio entre elementos */
+    margin: 0 15%;
+  }
+
+  input[type="text"],
+input[type="email"], 
+input[type="tel"],
+textarea {
+  padding: 10px; /* Aumentar el espacio interno */
+  border-top: none;
+  border-left: none;
+  border-right: none; /* Eliminar el borde */
+  border-color: rgb(179, 179, 179);
+  font-size: 16px; /* Tamaño de fuente */
+  width: 100%; /* Ancho completo */
+  
+}
+
+input[type="text"]::placeholder,
+input[type="email"]::placeholder,
+input[type="tel"]::placeholder,
+textarea::placeholder {
+  color: rgb(179, 179, 179); /* Color del placeholder */
+}

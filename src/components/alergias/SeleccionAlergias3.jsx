@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-native";
+import "./SeleccionAlergias3.css";
 
 const SeleccionAlergias3 = () => {
     const [alergias, setAlergias] = useState([]);
@@ -21,8 +22,8 @@ const SeleccionAlergias3 = () => {
 
     return (
         <div>
-            <button>X</button>
-            <div>
+            <div className="botonelim2"></div>
+            <div className="headerdiario">
                 <h2>Confirma tu selección.</h2>
                 <p>
                     A continuación te resumimos los alimentos registrados como
@@ -34,14 +35,14 @@ const SeleccionAlergias3 = () => {
                 <h4>Marca para deseleccionar o añadir uno nuevo.</h4>
                 
                 {alergias?.map((item, index) => (
-                    <p key={index}>{item}</p>
+                    <p key={index} className="boton">{item}</p>
                 ))}
                 {/* <Link to="/allergy2">
                     <button>Añadir nuevos</button>
                 </Link> */}
             </div>
 
-            <button>Confirmar</button>
+            <div className="botonazul">Confirmar</div>
         </div>
     );
 };

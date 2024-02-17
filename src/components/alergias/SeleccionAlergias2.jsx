@@ -75,34 +75,34 @@ const SeleccionAlergias2 = () => {
 
     return (
         <>
-            <div className="header">
-                <Link to="/allergy1">
-                    <button>Volver</button>
+            <div className="volverheader">
+                <Link to="/allergy1" className="informe">
+                <p>&#x276E; &nbsp;&nbsp; Volver</p>
                 </Link>
                 <h4>3 de 4</h4>
             </div>
 
-            <div className="titulo">
+            <div className="headerdiario">
                 <h2>Ahora selecciona tus alergias e intolerancias.</h2>
                 <p>
                     Los elementos marcados serán identificados en tus busquedas
                     como peligrosos para ti.
                 </p>
             </div>
-            <div className="letras">
+            <div className="letrasclick">
                 {letras?.map((letra, id) => (
-                    <button key={id}>{letra}</button>
+                    <div key={id} className="botongris">{letra}</div>
                 ))}
             </div>
 
             <div className="alergenos">
                 <form onSubmit={handleSubmit(onSubmit)}>
                     {letras?.map((letra, id) => (
-                        <div key={id}>
-                            <p>{letra}</p>
+                        <div key={id} >
+                            <p className="letras">{letra}</p>
 
                             {alergenosDB[letra].map((alergeno, id) => (
-                                <div key={id}>
+                                <div key={id} className="check-container">
                                     <input
                                         type="checkbox"
                                         className="check"
@@ -127,7 +127,7 @@ const SeleccionAlergias2 = () => {
                         </div>
                     ))}
                     {/* <Link to="/allergy3"> */}
-                        <button type="submit">Enviar</button>
+                    <div className="botonazul" type="submit">Enviar</div>
                     {/* </Link> */}
                     {/* onClick={() => {onDataSelect(selectedOptions)}} */}
                 </form>

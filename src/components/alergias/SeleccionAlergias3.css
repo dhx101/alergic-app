@@ -1,0 +1,11 @@
+.botonelim2 {
+    cursor: pointer;
+    background-image: url('../../../public/assets/x.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 16px;
+    width: 16px;
+    opacity: 70%;
+    display: inline-block; /* Asegura que el div se muestre como un bloque */
+    align-self: right;
+}

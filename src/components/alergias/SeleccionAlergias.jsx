@@ -2,6 +2,7 @@ import axios from 'axios';
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom';
+import "./SeleccionAlergias.css";
 
 
 const SeleccionAlergias = () => {
@@ -24,14 +25,14 @@ const SeleccionAlergias = () => {
   // const { register, handleSubmit, watch, formState: {errors}} = useForm()
 
   return (
-    <div>
-      <div>
-        <button>Volver</button>
-        {/* <Link to='/'><button>Volver</button></Link> */}
+    <div className="containerdiario">
+      <div className='volverheader'>
+        {/* <button>Volver</button> */}
+        <Link to='/' className="informe"><p>&#x276E; &nbsp;&nbsp; Volver</p></Link>
         <h4>2 de 4</h4>
       </div>
 
-      <div>
+      <div className="headerdiario">
         <h2>Vamos a añadir tu contacto en caso de emergencia.</h2>
         <p>Nos pondremos en contacto con tu persona de confianza y/o compañia de seguros en caso de emergencia.</p>
       </div>
@@ -45,11 +46,11 @@ const SeleccionAlergias = () => {
 
         <input type="text" {...register("company", {required: true, minLength: 10})} placeholder='Compañía de Seguros/Nº Póliza'/>
 
-          <button>Guardar emergencias</button>
+          <div className="botonazul">Guardar emergencias</div>
       </form>
 
       {/* <a href="#">Registraré mi contacto en otro momento</a> */}
-      <Link to='/'>Registraré mi contacto en otro momento</Link>
+      <Link to='/' className="informe"><p>Registraré mi contacto en otro momento</p></Link>
     </div>
   )
 }
