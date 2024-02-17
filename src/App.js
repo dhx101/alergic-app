@@ -18,6 +18,7 @@ import Favoritos from "./components/Favoritos/Favoritos";
 import Diario from "./components/Diario";
 import { useState } from "react";
 import { JwtContext } from "./shared/components/JwtContext";
+import Register from "./components/Register/Register";
 
 function App() {
 	const [jwt, setJwt] = useState(localStorage.getItem("token") || null);
@@ -28,6 +29,7 @@ function App() {
 				<BrowserRouter>
 					<Routes>
 						<Route path="/login" element={<Login />} />
+						<Route path="/register" element={<Register />} />
 						{jwt && <Route path="/homeLog" element={<Homepage />} />}
 						{jwt && <Route path="/page1" element={<Welocome1 />} />}
 						{jwt && <Route path="/page2" element={<Welocome2 />} />}
