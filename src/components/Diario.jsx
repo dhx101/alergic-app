@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import "./Diario.css";
 
 const Diario = () => {
     const [productos, setProductos] = useState([]);
@@ -33,58 +34,82 @@ const Diario = () => {
                 }
                 return producto;
             })
-        )
+        );
         setModoEdicion(null);
         // Aquí se pueden enviar las notas modificadas al servidor, si fuera necesario
     };
 
     const eliminarDiv = (id) => {
-      
-      setProductos(productos.filter((producto, i) => i !== id));
-    //   setMostrarDiv(false);
+        setProductos(productos.filter((producto, i) => i !== id));
+        //   setMostrarDiv(false);
     };
 
     return (
-        <div>
-            <div>
-                <button>Date</button>
-                <button>Config</button>
-                <button>X</button>
+        <div className="containerdiario">
+            <div className="botonesnav">
+                <p className="botondate"></p>
+                <p className="botonconfig"></p>
+                <p className="botonelim"></p>
             </div>
 
-            <div>
+            <div className="headerdiario">
                 <h2>¿Incluimos la selección en tu Diario?</h2>
                 <p>Añade tus comentarios para completar la información</p>
             </div>
             {productos.map((item, id) => (
-                    <div key={item.id}>
-                        <img src={item.imagen} alt={item.producto} style={{ height: "30%", width : "30%"}}/>
+                <div key={item.id} className="caja">
+                    <div className="cajaimg">
+                        <img
+                            src={item.imagen}
+                            alt={item.producto}
+                            className="imagen"
+                            style={{
+                                height: "50px",
+                                width: "50px",
+                                backgroundSize: "cover",
+                            }}
+                        />
+                    </div>
+
+                    <div className="cajita">
                         <p>{item.diaFecha}</p>
                         <p>{item.producto}</p>
                         {modoEdicion === id ? (
-                        <input
-                            type="text"
-                            value={notas}
-                            onChange={(e) => setNotas(e.target.value)}
-                        />
-                    ) : (
-                        <p>{item.notas}</p>
-                    )}
-
-                        <button onClick={() => eliminarDiv(id)}>X</button>
-                        {modoEdicion === id ? (
-                            <button onClick={() => guardarCambios(id)}>Listo</button>
+                            <input
+                                type="text"
+                                value={notas}
+                                onChange={(e) => setNotas(e.target.value)}
+                            />
                         ) : (
-                            <button onClick={() => activarEdicion(id, item.notas)}>Editar</button>
+                            <p>{item.notas}</p>
                         )}
                     </div>
-                
-            
-            ))}          
+
+                    <div className="cajita2">
+                        <p
+                            className="botonelim"
+                            onClick={() => eliminarDiv(id)}
+                        ></p>
+                        {modoEdicion === id ? (
+                            <p
+                                className="tick"
+                                onClick={() => guardarCambios(id)}
+                            ></p>
+                        ) : (
+                            <p
+                                className="editar"
+                                onClick={() => activarEdicion(id, item.notas)}
+                            ></p>
+                        )}
+                    </div>
+                </div>
+            ))}
 
             <div>
-                <button>Guardar</button>
-                <a href="#">Generar informe</a>
+                <div className="botonazul">Guardar</div>
+                <a href="#" className="informe">
+                    <p className="informe">Generar informe</p>
+                </a>
             </div>
         </div>
     );

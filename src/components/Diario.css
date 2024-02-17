@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
+
+
+.containerdiario {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.headerdiario {
+    margin: 0 20%;
+    font-weight: bold;
+    margin-bottom: 10%;
+}
+
+h2 {
+    font-size: 150%;
+    margin: 5% 0;
+}
+
+p {
+    opacity: 60%;
+}
+
+
+
+.caja {
+    display: flex;
+    justify-content: center;
+    border-color: green;
+    padding: 3%;
+}
+.cajaimg {
+    padding: 1%;
+}
+
+.cajita {
+    text-align: left;
+    margin: 0 8%;
+    padding: 2% 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.cajita2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.botonesnav {
+    display: flex;
+    justify-content: right;
+    margin-right: 4%;
+    padding: 5% 0;
+}
+
+.botondate {
+    cursor: pointer;
+    background-image: url('../../public/assets/calendario.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 16px;
+    width: 16px;
+    opacity: 70%;
+    margin-right: 4%;
+}
+
+.botonconfig {
+    cursor: pointer;
+    background-image: url('../../public/assets/configuraciones.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 16px;
+    width: 16px;
+    opacity: 70%;
+    margin-right: 4%;
+}
+
+.botonelim {
+    cursor: pointer;
+    background-image: url('../../public/assets/x.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 16px;
+    width: 16px;
+    opacity: 70%;
+}
+
+.editar {
+    background-image: url('../../public/assets/lapiz.png');
+    cursor: pointer;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 16px;
+    width: 16px;
+    opacity: 70%;
+}
+
+.tick {
+    cursor: pointer;
+    background-image: url('../../public/assets/tick.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 16px;
+    width: 16px;
+    opacity: 70%;
+}
+
+.botonazul {
+    display: inline-block;
+    background-color: rgb(22, 207, 231);
+    padding: 3% 30%;
+    margin: 5% 0%;
+    font-weight: bold;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.informe {
+    text-decoration: none;
+    color: rgb(22, 207, 231);
+    font-weight: bold;
+}
