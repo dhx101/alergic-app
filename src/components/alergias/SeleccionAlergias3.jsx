@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-native";
 import "./SeleccionAlergias3.css";
 
 const SeleccionAlergias3 = () => {
