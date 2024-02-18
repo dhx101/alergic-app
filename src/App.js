@@ -19,6 +19,7 @@ import Diario from "./components/Diario";
 import { useState } from "react";
 import { JwtContext } from "./shared/components/JwtContext";
 import Register from "./components/Register/Register";
+import Carousel from "./Carousel";
 
 function App() {
 	const [jwt, setJwt] = useState(localStorage.getItem("token") || null);
@@ -44,6 +45,12 @@ function App() {
 							<Route
 								path="/homeLog"
 								element={<Homepage />}
+							/>
+						)}
+						{jwt && (
+							<Route
+								path="/carousel"
+								element={<Carousel />}
 							/>
 						)}
 						{jwt && (

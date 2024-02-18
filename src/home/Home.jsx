@@ -52,7 +52,7 @@ const Home = () => {
 							</Link>
 						</li>
 						<li>
-							<Link className="header-nav-list__item" to="/diary">
+							<Link className="header-nav-list__item" to="/diario">
 								Diario
 							</Link>
 						</li>
