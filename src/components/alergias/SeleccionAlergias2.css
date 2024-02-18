@@ -84,3 +84,7 @@ input:checked+label{
     cursor: pointer;
     color:white;
 }
+
+.hidden {
+    display: none;
+}

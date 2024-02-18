@@ -26,13 +26,6 @@ const SeleccionAlergias2 = () => {
         }
     }
 
-    // let alergenos2= []
-
-    // letras.map((item) => {
-    //     alergenos2 = [...alergenos2, ...alergenosDB[item]]
-    // })
-
-    // console.log(alergenos2.includes("Ajo"));
     useEffect(() => {
         getUser();
         getAlergias();
@@ -65,12 +58,18 @@ const SeleccionAlergias2 = () => {
         console.log("Alergenos seleccionados:", alergenos2);
 
         const datos = {
-            // ...data,
             allergies: alergenosSeleccionados,
         };
 
         patch(datos);
         navigate("/allergy3");
+    };
+
+    const handleLetraClick = (letra) => {
+        const containers = document.querySelectorAll(`.check-container[data-letra="${letra}"]`);
+        containers.forEach(container => {
+            container.classList.toggle("hidden"); 
+        });
     };
 
     return (
@@ -92,7 +91,7 @@ const SeleccionAlergias2 = () => {
                 </div>
                 <div className="letrasclick">
                     {letras?.map((letra, id) => (
-                        <div key={id} className="botongris">
+                        <div key={id} className="botongris" onClick={() => handleLetraClick(letra)}>
                             {letra}
                         </div>
                     ))}
@@ -105,16 +104,14 @@ const SeleccionAlergias2 = () => {
                                 <p className="letras">{letra}</p>
 
                                 {alergenosDB[letra].map((alergeno, id) => (
-                                    <div key={id} className="check-container">
+                                    <div key={id} className={`check-container hidden`} data-letra={letra}>
                                         <input
                                             type="checkbox"
                                             className="check"
                                             id={alergeno}
                                             {...register(alergeno)}
                                             checked={
-                                                alergenosSeleccionados[
-                                                    alergeno
-                                                ] || false
+                                                alergenosSeleccionados[alergeno] || false
                                             }
                                             onChange={() =>
                                                 handleCheckboxChange(alergeno)
@@ -130,12 +127,9 @@ const SeleccionAlergias2 = () => {
                                 ))}
                             </div>
                         ))}
-                        {/* <Link to="/allergy3"> */}
                         <div className="botonazul" type="submit">
                             Enviar
                         </div>
-                        {/* </Link> */}
-                        {/* onClick={() => {onDataSelect(selectedOptions)}} */}
                     </form>
                 </div>
             </div>
