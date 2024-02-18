@@ -53,16 +53,14 @@ const Register = () => {
           type="email"
           placeholder="Dirección Email"
           {...register("email", {
-            required: true,
-            pattern: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
+            required: true
           })}
         />
         <input
           type="number"
           placeholder="Número de Teléfono"
           {...register("phone", {
-            required: true,
-            pattern: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
+            required: true
           })}
         />
         <input
